@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <ng-container *ngFor="let menuItem of menuList">
+          <ng-container *ngIf="menuItem.subMenu && menuItem.subMenu.length > 0">
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >{{ menuItem.title }} <span class="caret"></span
+              ></a>
+              <ul class="dropdown-menu">
+                <li *ngFor="let subMenuItem of menuItem.subMenu">
+                  <a href="{{ subMenuItem.path }}">{{ subMenuItem.title }}</a>
+                </li>
+              </ul>
+              <app-menu-item #menu [subMenu]="menuItem.subMenu"></app-menu-item>
+            </li>
+          </ng-container>
+          <ng-container
+            *ngIf="
+              !menuItem.subMenu ||
+              (menuItem.subMenu && menuItem.subMenu.length === 0)
+            "
+          >
+            <li>
+              <a href="{{ menuItem.path }}">{{ menuItem.title }}</a>
+            </li>
+          </ng-container>
+        </ng-container>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>

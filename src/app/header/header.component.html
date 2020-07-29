@@ -5,32 +5,25 @@
       <ul class="nav navbar-nav">
         <ng-container *ngFor="let menuItem of menuList">
           <ng-container *ngIf="menuItem.subMenu && menuItem.subMenu.length > 0">
-            <li class="dropdown">
-              <a
-                href="#"
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                role="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-                >{{ menuItem.title }} <span class="caret"></span
-              ></a>
+            <li class="nav-item dropdown">
+              <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                aria-expanded="false">{{ menuItem.title }} <span class="caret"></span></a> -->
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{menuItem.title}}</a>
               <ul class="dropdown-menu">
-                <li *ngFor="let subMenuItem of menuItem.subMenu">
+                <app-menu-item #menu [subMenu]="menuItem.subMenu"></app-menu-item>
+
+                <!-- <li *ngFor="let subMenuItem of menuItem.subMenu">
                   <a href="{{ subMenuItem.path }}">{{ subMenuItem.title }}</a>
-                </li>
+                </li> -->
               </ul>
-              <app-menu-item #menu [subMenu]="menuItem.subMenu"></app-menu-item>
             </li>
           </ng-container>
-          <ng-container
-            *ngIf="
+          <ng-container *ngIf="
               !menuItem.subMenu ||
               (menuItem.subMenu && menuItem.subMenu.length === 0)
-            "
-          >
-            <li>
-              <a href="{{ menuItem.path }}">{{ menuItem.title }}</a>
+            ">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ menuItem.path }}">{{ menuItem.title }}</a>
             </li>
           </ng-container>
         </ng-container>

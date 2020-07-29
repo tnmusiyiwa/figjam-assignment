@@ -42,7 +42,13 @@ export class HeaderComponent {
         {
           title: 'submenu2_2',
           path: 'submenu2_1_link_url',
-          subMenu: null,
+          subMenu: [
+            {
+              title: 'level3_1',
+              path: 'level3_1_url',
+              subMenu: null,
+            },
+          ],
         },
         {
           title: 'submenu2_2',
